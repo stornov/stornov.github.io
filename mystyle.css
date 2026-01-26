@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    font: 13.34px helvetica, arial, clean, sans-serif;
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+p {
+    margin: 1em 0;
+}
+
+a {
+    color: #00a;
+}
+
+a:visited {
+    color: #a0a;
+}
+
+a:hover {
+    color: black;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+/* --- ИСПРАВЛЕННЫЕ СПИСКИ --- */
+/* Чтобы точки были ровными и не исчезали */
+#post ul, #post ol {
+    margin: 1em 0;
+    padding-left: 2em; /* Место для точек слева */
+    list-style-position: outside; /* Точки вынесены за блок текста */
+    text-align: left; /* Текст выравнивается влево, а не по ширине */
+}
+
+#post li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+}
+
+/* Списки на главной странице */
+ul.posts {
+    list-style-type: none;
+    margin-bottom: 2em;
+}
+
+ul.posts li {
+    line-height: 1.75em;
+}
+
+ul.posts span {
+    color: #aaa;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 80%;
+}
+
+/* --- СТРУКТУРА САЙТА --- */
+.site {
+    font-size: 110%;
+    text-align: justify;
+    width: 42em;
+    margin: 3em auto 2em auto;
+    line-height: 1.5em;
+}
+
+.title {
+    color: #0a5494;
+    font-weight: bold;
+    margin-bottom: 2em;
+}
+
+.site .title a {
+    color: #0a5494;
+    text-decoration: none;
+}
+
+.site .title a:hover {
+    color: black;
+}
+
+.site .title a.extra {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 1em;
+}
+
+.site .title a.extra:hover {
+    color: black;
+}
+
+.site .meta {
+    color: #aaa;
+}
+
+.site .footer {
+    font-size: 80%;
+    color: #666;
+    border-top: 4px solid #eee;
+    margin-top: 2em;
+    overflow: hidden;
+}
+
+.site .footer .contact {
+    float: left;
+    margin-right: 3em;
+}
+
+.site .footer .contact a {
+    color: #8085C1;
+}
+
+/* --- СТИЛИ ДЛЯ КОДА (ВСЕГДА ТЕМНЫЕ) --- */
+
+#post pre {
+    /* Геометрия */
+    padding: 1em;
+    margin: 1.5em 0;
+    border-radius: 6px;
+    line-height: 1.5;
+    
+    /* Технические правки (обязательно!) */
+    text-align: left;     /* Отменяем центрирование body */
+    white-space: pre;     /* Сохраняем пробелы */
+    overflow-x: auto;     /* Скролл, если строка длинная */
+    
+    /* Шрифты */
+    font-family: Consolas, "Monaco", "Courier New", monospace;
+
+    /* ЦВЕТА: ТЕМНАЯ ТЕМА */
+    background-color: #2d2d2d; /* Темно-серый фон */
+    color: #f8f8f2;            /* Белый текст */
+    border: 1px solid #111;    /* Темная рамка */
+}
+
+/* Сам текст кода */
+#post code {
+    font-family: Consolas, "Monaco", "Courier New", monospace;
+    font-size: 90%;
+    
+    /* Убираем фон и цвет, чтобы они наследовались от pre */
+    background-color: transparent;
+    color: inherit; 
+    border: none;
+    padding: 0;
+}
+
+/* Инлайн код (внутри строки текста) тоже делаем темненьким */
+#post p code, #post li code {
+    background-color: #444;
+    color: #fff;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: Consolas, "Monaco", "Courier New", monospace;
+    font-size: 85%;
+    border: none;
+}
+
+/* --- КАРТИНКИ И ЦИТАТЫ --- */
+#post img {
+    max-width: 100%; 
+    padding: 1em 0;
+}
+
+#post blockquote {
+    padding-left: 1em;
+    border-left: 5px solid #ddd;
+    font-style: italic;
+}
+
+#post .note {
+    padding-left: 1em;
+    border-left: 5px solid #a00;
+    font-style: italic;
+}
