@@ -64,13 +64,8 @@ def process_posts(env, config, global_context):
         if not post_date:
             post_date = datetime.date.today()
         
-<<<<<<< HEAD
-        # Конвертация Markdown
         md = MarkdownIt().enable('table').enable('strikethrough')
         html_content = md.render(post.content)
-=======
-        html_content = markdown.markdown(post.content, extensions=['fenced_code'])
->>>>>>> d6987d95a6854c943f84451c7929fd84f55d510b
         
         custom_slug = post.get("slug")
         post_title = post.get("title")
