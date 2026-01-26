@@ -4,7 +4,7 @@ Source code of my blog: [stornov.github.io](https://stornov.github.io/)
 
 ## 🔧 Tech Stack
 
-Powered by **[Luna SSG v2.0](https://github.com/stornov/luna-ssg)** (Custom Python Engine).
+Powered by **[Luna SSG v1.1](https://github.com/stornov/luna-ssg)** (Custom Python Engine).
 
 ### Improvements in this version
 
