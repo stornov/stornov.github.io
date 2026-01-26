@@ -1,0 +1,22 @@
+<div class="footer">
+            <div class="contact-wrapper">
+                {% for column in footer_columns %}
+                <div class="contact">
+                    <p>
+                        <strong>{{ column.title }}</strong><br>
+                        {% for link in column.links %}
+                            {% if link.url %}
+                                <a href="{{ link.url }}">{{ link.text }}</a><br>
+                            {% else %}
+                                {{ link.text }}<br>
+                            {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</body>
+</html>

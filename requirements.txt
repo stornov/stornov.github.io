@@ -1,0 +1,4 @@
+python-liquid
+python-frontmatter
+markdown
+pyyaml

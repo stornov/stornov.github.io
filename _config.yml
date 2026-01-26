@@ -1,0 +1,23 @@
+lang: en-us
+title: Arhip Storozhev
+author: Arhip Storozhev
+theme: mystyle.css
+
+menu:
+  - title: home
+    url: index.html
+
+sections:
+  - id: blog
+    title: "Blog Posts"
+
+
+footer:
+  - title: Contacts
+    links:
+      - text: arsestordev@gmail.com
+        url: mailto:arsestordev@gmail.com
+  - title: Socials
+    links:
+      - text: GitHub
+        url: https://github.com/stornov

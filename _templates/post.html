@@ -1,0 +1,13 @@
+{% include "header.html" %}
+
+<div id="post">
+    <h1>{{ title }}</h1>
+    <div class="meta" style="color: #aaa; margin-bottom: 2em;">
+        {% if location %}{{ location }} — {% endif %}
+        {{ date | date: "%d %b %Y" }}
+    </div>
+    
+    {{ content }}
+</div>
+
+{% include "footer.html" %}
