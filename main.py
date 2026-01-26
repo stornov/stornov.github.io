@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 import yaml
 import frontmatter
-import markdown
+from markdown_it import MarkdownIt
 from liquid import Environment, FileSystemLoader
 
 # --- НАСТРОЙКИ ПУТЕЙ ---
@@ -71,7 +71,8 @@ def process_posts(env, config, global_context):
             post_date = datetime.date.today()
         
         # Конвертация Markdown
-        html_content = markdown.markdown(post.content, extensions=['fenced_code'])
+        md = MarkdownIt().enable('table').enable('strikethrough')
+        html_content = md.render(post.content)
         
         # Slug и имя файла
         custom_slug = post.get("slug")

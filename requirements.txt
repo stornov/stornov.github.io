@@ -1,4 +1,4 @@
 python-liquid
 python-frontmatter
-markdown
 pyyaml
+markdown-it-py

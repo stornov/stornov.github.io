@@ -42,12 +42,10 @@ table {
     font: 100%;
 }
 
-/* --- ИСПРАВЛЕННЫЕ СПИСКИ --- */
-/* Чтобы точки были ровными и не исчезали */
 #post ul, #post ol {
     margin: 1em 0;
-    padding-left: 2em; /* Место для точек слева */
-    list-style-position: outside; /* Точки вынесены за блок текста */
+    padding-left: 2em; 
+    list-style-position: outside; 
     text-align: left; /* Текст выравнивается влево, а не по ширине */
 }
 
@@ -189,4 +187,33 @@ ul.posts span {
     padding-left: 1em;
     border-left: 5px solid #a00;
     font-style: italic;
+}
+
+#post table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+#post th, #post td {
+    border: 1px solid #ddd;
+    padding: 0.75em;
+}
+
+#post th {
+    background-color: #eef; /* Цвет как у твоего кода */
+    color: #0a5494;         /* Твой основной синий цвет */
+    font-weight: bold;
+}
+
+#post tr:nth-child(even) {
+    background-color: #f9f9f9; /* Легкая зебра для читаемости */
+}
+
+/* --- Исправление вложенных списков --- */
+#post ul ul, #post ol ol, #post ul ol, #post ol ul {
+    padding-left: 2em;
+    margin-top: 0.5em;
 }
