@@ -7,7 +7,6 @@ import frontmatter
 import markdown
 from liquid import Environment, FileSystemLoader
 
-# --- НАСТРОЙКИ ПУТЕЙ ---
 BASE_DIR = Path.cwd()
 DIRS = {
     "templates": BASE_DIR / "_templates",
@@ -17,8 +16,7 @@ DIRS = {
     "config": BASE_DIR / "_config.yml"
 }
 
-def load_config():
-    # Проверка наличия конфига
+def load_config()
     if not DIRS["config"].exists():
         print(f"Error: Config not found at {DIRS['config']}")
         exit(1)
@@ -49,20 +47,16 @@ def get_global_context(config):
 def process_posts(env, config, global_context):
     posts_metadata = []
     
-    # 1. Очищаем папку сайта
     if DIRS["site"].exists():
         shutil.rmtree(DIRS["site"])
     DIRS["site"].mkdir()
 
-    # !!! ВАЖНО: Создаем файл .nojekyll !!!
-    # Это говорит GitHub Pages: "Не трогай этот сайт своим Jekyll-ом, тут просто HTML"
     (DIRS["site"] / ".nojekyll").touch()
     print("Created .nojekyll file (Jekyll disabled)")
 
     valid_sections = [s["id"] for s in config.get("sections", [])]
     DEFAULT_CATEGORY = "blog"
 
-    # Обработка постов
     for md_file in DIRS["posts"].glob("*.md"):
         post = frontmatter.load(md_file)
         
@@ -70,10 +64,8 @@ def process_posts(env, config, global_context):
         if not post_date:
             post_date = datetime.date.today()
         
-        # Конвертация Markdown
         html_content = markdown.markdown(post.content, extensions=['fenced_code'])
         
-        # Slug и имя файла
         custom_slug = post.get("slug")
         post_title = post.get("title")
 
@@ -88,14 +80,12 @@ def process_posts(env, config, global_context):
 
         output_filename = f"{filename_base}.html"
         
-        # Категории
         user_category = post.get("category", DEFAULT_CATEGORY)
         if user_category in valid_sections:
             final_category = user_category
         else:
             final_category = DEFAULT_CATEGORY
 
-        # Контекст
         post_context = global_context.copy()
         post_context.update({
             "page_title": post_title,
@@ -106,7 +96,6 @@ def process_posts(env, config, global_context):
             "is_post": True
         })
 
-        # Рендер
         template_name = f"{post.get('template', 'post')}.html"
         template = env.get_template(template_name)
         rendered_html = template.render(**post_context)
