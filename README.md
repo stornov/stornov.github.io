@@ -2,7 +2,7 @@
 
 Welcome to the source code of my personal website and blog: **[stornov.github.io](https://stornov.github.io/)**
 
-Here I share my thoughts on programming, game reviews, and life updates.
+Here I share my thoughts on programming, and life updates.
 
 ## 🔧 Powered by Luna SSG
 
