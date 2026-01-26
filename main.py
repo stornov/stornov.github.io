@@ -16,7 +16,7 @@ DIRS = {
     "config": BASE_DIR / "_config.yml"
 }
 
-def load_config()
+def load_config():
     if not DIRS["config"].exists():
         print(f"Error: Config not found at {DIRS['config']}")
         exit(1)
