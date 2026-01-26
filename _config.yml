@@ -5,7 +5,7 @@ theme: mystyle.css
 
 menu:
   - title: home
-    url: ./
+    url: /
 
 sections:
   - id: blog
