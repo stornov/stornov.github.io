@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Markdown Elements Test Page</title>
+    <meta name="author" content="Arhip Storozhev">
+    <link rel="stylesheet" href="mystyle.css" type="text/css">
+</head>
+<body>
+    <div class="site">
+        <div class="title">
+            <a href="/">Arhip Storozhev</a>
+            
+    <a class="extra" href="/">home</a>
+
+        </div>
+
+<div id="post">
+    <h1>Markdown Elements Test Page</h1>
+    <div class="meta" style="color: #aaa; margin-bottom: 2em;">
+        
+        26 Jan 2026
+    </div>
+    
+    <p>Это тестовая страница, содержащая все поддерживаемые элементы Markdown. Она нужна для проверки корректности отображения стилей и работы парсера <code>markdown-it-py</code>.</p>
+<hr />
+<h2>1. Заголовки (Headings)</h2>
+<h1>Заголовок H1</h1>
+<h2>Заголовок H2</h2>
+<h3>Заголовок H3</h3>
+<h4>Заголовок H4</h4>
+<h5>Заголовок H5</h5>
+<h6>Заголовок H6</h6>
+<hr />
+<h2>2. Форматирование текста (Emphasis)</h2>
+<ul>
+<li><strong>Жирный текст</strong> (Bold)</li>
+<li><em>Курсив</em> (Italic)</li>
+<li><strong>Логическое <em>совмещение</em></strong> (Bold + Italic)</li>
+<li><s>Зачеркнутый текст</s> (Strikethrough)</li>
+<li><code>Инлайн-код</code> (Inline Code)</li>
+</ul>
+<hr />
+<h2>3. Списки (Lists)</h2>
+<h3>Маркированный список (Unordered)</h3>
+<ul>
+<li>Уровень 1</li>
+<li>Уровень 1 (второй пункт)
+<ul>
+<li>Уровень 2 (вложенность через 4 пробела)</li>
+<li>Уровень 2 (еще один пункт)
+<ul>
+<li>Уровень 3</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Возврат к Уровню 1</li>
+</ul>
+<h3>Нумерованный список (Ordered)</h3>
+<ol>
+<li>Первый пункт</li>
+<li>Второй пункт
+<ol>
+<li>Вложенный пункт 1</li>
+<li>Вложенный пункт 2</li>
+</ol>
+</li>
+<li>Третий пункт</li>
+</ol>
+<hr />
+<h2>4. Цитаты (Blockquotes)</h2>
+<blockquote>
+<p>Это стандартная цитата. Она должна иметь отступ и вертикальную полосу слева.</p>
+<p>Второй абзац внутри цитаты.</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]
+Это вложенная цитата или заметка (зависит от стилей).</p>
+</blockquote>
+<hr />
+<h2>5. Таблицы (Tables)</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Название функции</th>
+<th style="text-align:center">Статус</th>
+<th style="text-align:right">Комментарий</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Вложенные списки</td>
+<td style="text-align:center">✅ Работает</td>
+<td style="text-align:right">Проверено</td>
+</tr>
+<tr>
+<td style="text-align:left">Зачеркивание</td>
+<td style="text-align:center">✅ Работает</td>
+<td style="text-align:right">Через расширение</td>
+</tr>
+<tr>
+<td style="text-align:left">Таблицы</td>
+<td style="text-align:center">✅ Работает</td>
+<td style="text-align:right">С выравниванием</td>
+</tr>
+<tr>
+<td style="text-align:left">Темная консоль</td>
+<td style="text-align:center">✅ Работает</td>
+<td style="text-align:right">Автоматически</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>6. Код (Code Blocks)</h2>
+<h3>Стандартный код (Светлая тема)</h3>
+<pre><code class="language-python">def check_engine():
+    status = &quot;Luna SSG is running&quot;
+    for i in range(3):
+        print(f&quot;{status}... {i}&quot;)
+    return True
+</code></pre>
+<h3>Терминал (Темная тема)</h3>
+<pre><code class="language-bash">$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+$ python main.py
+Build complete! Created .nojekyll
+</code></pre>
+<hr />
+<h2>7. Ссылки и Изображения</h2>
+<p><strong>Ссылка:</strong> <a href="/">Вернуться на главную</a></p>
+<p><strong>Изображение (в отдельном абзаце):</strong></p>
+<p><img src="https://placehold.co/600x300/eef/0a5494?text=Luna+SSG+Test" alt="Тестовое изображение" /></p>
+<hr />
+<h2>8. Горизонтальная линия (Horizontal Rule)</h2>
+<p>Ниже представлена горизонтальная линия:</p>
+<hr />
+<h2>9. Сложные конструкции</h2>
+<ul>
+<li>
+<p><strong>Список с кодом внутри:</strong></p>
+<ul>
+<li>Выполни команду: <code>pip install -r requirements.txt</code></li>
+<li>Запусти сборку:<pre><code class="language-bash">python main.py
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Текст с <s>зачеркиванием</s> внутри ссылки:</strong> <a href="/">Это <s>неправильная</s> правильная ссылка</a></p>
+</li>
+</ul>
+<hr />
+<p>Конец тестовой страницы.</p>
+
+</div>
+
+<div class="footer">
+            <div class="contact-wrapper">
+                
+                <div class="contact">
+                    <p>
+                        <strong>Contacts</strong><br>
+                        
+                            
+                                <a href="mailto:arsestordev@gmail.com">arsestordev@gmail.com</a><br>
+                            
+                        
+                    </p>
+                </div>
+                
+                <div class="contact">
+                    <p>
+                        <strong>Socials</strong><br>
+                        
+                            
+                                <a href="https://github.com/stornov">GitHub</a><br>
+                            
+                        
+                    </p>
+                </div>
+                
+            </div>
+            <div style="clear: both;"></div>
+        </div>
+    </div>
+</body>
+</html>
