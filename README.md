@@ -1,15 +1,15 @@
 # Arhip Storozhev | Personal Website
 
-Source code of my blog and portfolio: **[stornov.github.io](https://stornov.github.io/)**
+Welcome to the source code of my personal website and blog: **[stornov.github.io](https://stornov.github.io/)**
 
-## 🔧 Tech Stack
+Here I share my thoughts on programming, game reviews, and life updates.
 
-Powered by **[Luna SSG v1.2](https://github.com/stornov/luna-ssg)** (Custom Python Engine).
+## 🔧 Powered by Luna SSG
 
-### Update v1.2 Features:
+This website is not built with Jekyll or Hugo. It runs on my own custom engine written in **Python**.
 
-* **Projects Section**: Added a dedicated list of my open-source projects to the homepage.
-* **Linklog**: Implemented external link posts (Daring Fireball style).
+👉 **[Check out the Generator Source Code (v1.3)](https://github.com/stornov/luna-ssg)**
 
 ---
 © Arhip Storozhev.
+The site content is for personal use. The site generator engine is Open Source (MIT).
