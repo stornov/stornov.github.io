@@ -46,7 +46,7 @@ table {
     margin: 1em 0;
     padding-left: 2em; 
     list-style-position: outside; 
-    text-align: left; /* Текст выравнивается влево, а не по ширине */
+    text-align: left;
 }
 
 #post li {
@@ -54,7 +54,6 @@ table {
     line-height: 1.6;
 }
 
-/* Списки на главной странице */
 ul.posts {
     list-style-type: none;
     margin-bottom: 2em;
@@ -70,7 +69,6 @@ ul.posts span {
     font-size: 80%;
 }
 
-/* --- СТРУКТУРА САЙТА --- */
 .site {
     font-size: 110%;
     text-align: justify;
@@ -125,42 +123,33 @@ ul.posts span {
     color: #8085C1;
 }
 
-/* --- СТИЛИ ДЛЯ КОДА (ВСЕГДА ТЕМНЫЕ) --- */
-
 #post pre {
-    /* Геометрия */
     padding: 1em;
     margin: 1.5em 0;
     border-radius: 6px;
     line-height: 1.5;
     
-    /* Технические правки (обязательно!) */
-    text-align: left;     /* Отменяем центрирование body */
-    white-space: pre;     /* Сохраняем пробелы */
-    overflow-x: auto;     /* Скролл, если строка длинная */
+    text-align: left;
+    white-space: pre;
+    overflow-x: auto;
     
-    /* Шрифты */
     font-family: Consolas, "Monaco", "Courier New", monospace;
 
-    /* ЦВЕТА: ТЕМНАЯ ТЕМА */
-    background-color: #2d2d2d; /* Темно-серый фон */
-    color: #f8f8f2;            /* Белый текст */
-    border: 1px solid #111;    /* Темная рамка */
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    border: 1px solid #111;
 }
 
-/* Сам текст кода */
 #post code {
     font-family: Consolas, "Monaco", "Courier New", monospace;
     font-size: 90%;
     
-    /* Убираем фон и цвет, чтобы они наследовались от pre */
     background-color: transparent;
     color: inherit; 
     border: none;
     padding: 0;
 }
 
-/* Инлайн код (внутри строки текста) тоже делаем темненьким */
 #post p code, #post li code {
     background-color: #444;
     color: #fff;
@@ -171,7 +160,6 @@ ul.posts span {
     border: none;
 }
 
-/* --- КАРТИНКИ И ЦИТАТЫ --- */
 #post img {
     max-width: 100%; 
     padding: 1em 0;
@@ -203,16 +191,15 @@ ul.posts span {
 }
 
 #post th {
-    background-color: #eef; /* Цвет как у твоего кода */
-    color: #0a5494;         /* Твой основной синий цвет */
+    background-color: #eef;
+    color: #0a5494;
     font-weight: bold;
 }
 
 #post tr:nth-child(even) {
-    background-color: #f9f9f9; /* Легкая зебра для читаемости */
+    background-color: #f9f9f9;
 }
 
-/* --- Исправление вложенных списков --- */
 #post ul ul, #post ol ol, #post ul ol, #post ol ul {
     padding-left: 2em;
     margin-top: 0.5em;
