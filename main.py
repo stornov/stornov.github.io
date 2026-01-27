@@ -109,7 +109,8 @@ def process_posts(env, config, global_context):
                 "title": post_title,
                 "date": post_date,
                 "url": output_filename,
-                "category": final_category
+                "category": final_category,
+                "external_link": post.get("link")
             })
             
     posts_metadata.sort(key=lambda x: x['date'], reverse=True)
@@ -135,6 +136,7 @@ def build_index(env, config, global_context, posts):
     index_context.update({
         "page_title": config.get("title"),
         "sections": sections_data,
+        "projects": config.get("projects", []),
         "is_home": True 
     })
     

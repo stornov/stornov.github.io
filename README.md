@@ -1,18 +1,15 @@
 # Arhip Storozhev | Personal Website
 
-Source code of my blog: [stornov.github.io](https://stornov.github.io/)
+Source code of my blog and portfolio: **[stornov.github.io](https://stornov.github.io/)**
 
 ## 🔧 Tech Stack
 
-Here I share my thoughts on programming, and life updates.
+Powered by **[Luna SSG v1.2](https://github.com/stornov/luna-ssg)** (Custom Python Engine).
 
-Powered by **[Luna SSG v1.1](https://github.com/stornov/luna-ssg)** (Custom Python Engine).
+### Update v1.2 Features:
 
-### Improvements in this version
-
-* Switched to `markdown-it-py` for better CommonMark compliance.
-* Full support for nested lists and tables.
-* Automatic terminal-style for code blocks.
+* **Projects Section**: Added a dedicated list of my open-source projects to the homepage.
+* **Linklog**: Implemented external link posts (Daring Fireball style).
 
 ---
-© 2026 Arhip Storozhev
+© Arhip Storozhev.
