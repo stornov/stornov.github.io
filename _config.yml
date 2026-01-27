@@ -13,17 +13,14 @@ sections:
 
 
 footer:
-  - title: Contacts
-    links:
-      - text: Arhip Storozhev
-        url: null
-      - text: arsestordev@gmail.com
-        url: mailto:arsestordev@gmail.com
-  - title: Socials
-    links:
-      - text: GitHub
-        url: https://github.com/stornov
-  - title: Powered by
-    links:
-      - text: Luna SSG
-        url: https://github.com/stornov/luna-ssg
+  - links:
+    - text: Arhip Storozhev
+      url: null
+    - text: arsestordev@gmail.com        
+      url: mailto:arsestordev@gmail.com
+  - links:
+    - text: GitHub
+      url: https://github.com/stornov
+  - links:
+    - text: Powered by Luna SSG
+      url: https://github.com/stornov/luna-ssg
