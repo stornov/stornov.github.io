@@ -21,19 +21,23 @@
         <br>
     {% endfor %}
 
-    {% if projects %}
-        <div id="projects">
-            <h2>Projects</h2>
+    {% for section in bottom_sections %}
+        <div class="bottom-section">
+            <h2>{{ section.title }}</h2>
             <ul class="posts">
-                {% for project in projects %}
+                {% for item in section.items %}
                     <li>
-                        <a href="{{ project.url }}">{{ project.title }}</a> 
-                        &#58; {{ project.description }}
+                        <a href="{{ item.url }}">{{ item.title }}</a>
+                        
+                        {% if item.description %}
+                            &#58; {{ item.description }}
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ul>
         </div>
-    {% endif %}
+        <br>
+    {% endfor %}
 
 </div>
 

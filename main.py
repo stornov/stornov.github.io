@@ -136,7 +136,7 @@ def build_index(env, config, global_context, posts):
     index_context.update({
         "page_title": config.get("title"),
         "sections": sections_data,
-        "projects": config.get("projects", []),
+        "bottom_sections": config.get("bottom_sections", []),
         "is_home": True 
     })
     

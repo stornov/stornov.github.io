@@ -13,13 +13,12 @@ sections:
   - id: events
     title: "Events, competitions, hackathons, etc."
 
-projects:
-  - title: Luna SSG
-    url: https://github.com/stornov/luna-ssg
-    description: "My custom static site generator written in Python"
-  - title: UNIT.HACK 2025 Entry
-    url: https://github.com/stornov/unit.hack-2025
-    description: "Hackathon project solving a case from NAUMEN."
+bottom_sections:
+  - title: "Noteworthy Open Source Projects"
+    items:
+      - title: Luna SSG
+        url: https://github.com/stornov/luna-ssg
+        description: "Fast and simple static site generator with blog support (used for this site)"
 
 footer:
   - title: Contacts
