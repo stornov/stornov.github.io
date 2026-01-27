@@ -21,3 +21,7 @@ footer:
     links:
       - text: GitHub
         url: https://github.com/stornov
+  - title: Powered by
+    links:
+      - text: Luna SSG
+        url: https://github.com/stornov/luna-ssg
