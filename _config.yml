@@ -15,6 +15,8 @@ sections:
 footer:
   - title: Contacts
     links:
+      - text: Arhip Storozhev
+        url: null
       - text: arsestordev@gmail.com
         url: mailto:arsestordev@gmail.com
   - title: Socials
