@@ -13,7 +13,8 @@ DIRS = {
     "posts": BASE_DIR / "_posts",
     "site": BASE_DIR / "_site",
     "themes": BASE_DIR / "_themes",
-    "config": BASE_DIR / "_config.yml"
+    "config": BASE_DIR / "_config.yml",
+    "media": BASE_DIR / "_media"
 }
 
 def load_config():
@@ -155,6 +156,16 @@ def copy_assets(config):
     else:
         print(f"CRITICAL WARNING: Theme file not found at {css_src}")
 
+def copy_media():
+    src = DIRS["media"]
+    dest = DIRS["site"] / "media"
+
+    if src.exists:
+        shutil.copytree(src, dest, dirs_exist_ok=True)
+        print(f"Media copied: {len(list(src.glob("*")))} files")
+    else:
+        print("No _media folder found, skipping.")
+
 def main():
     print(f"Starting build in: {BASE_DIR}")
     config = load_config()
@@ -164,6 +175,7 @@ def main():
     posts = process_posts(env, config, global_ctx)
     build_index(env, config, global_ctx, posts)
     copy_assets(config)
+    copy_media()
     print("Build complete! Ready for deployment.")
 
 if __name__ == "__main__":
