@@ -162,7 +162,7 @@ def copy_media():
 
     if src.exists:
         shutil.copytree(src, dest, dirs_exist_ok=True)
-        print(f"Media copied: {len(list(src.glob("*")))} files")
+        print(f"Media copied: {len(list(src.glob('*')))} files")
     else:
         print("No _media folder found, skipping.")
 
