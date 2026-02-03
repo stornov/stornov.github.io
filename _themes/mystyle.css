@@ -204,3 +204,28 @@ ul.posts span {
     padding-left: 2em;
     margin-top: 0.5em;
 }
+
+#post p:has(img) {
+    text-align: center;
+    margin: 2em 0;
+    text-align-last: center;
+}
+
+#post img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 3px;
+}
+
+#post p:has(img) em {
+    display: block;
+    text-align: center;
+    margin-top: 0.5em;
+
+    font-style: italic;
+    font-size: 0.9em;
+    color: #777;
+
+    font-family: helvetica, arial, clean, sans-serif;
+}
