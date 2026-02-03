@@ -221,7 +221,6 @@ ul.posts span {
 #post p:has(img) em {
     display: block;
     text-align: center;
-    margin-top: 0.5em;
 
     font-style: italic;
     font-size: 0.9em;
