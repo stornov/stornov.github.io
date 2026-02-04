@@ -2,6 +2,7 @@ import shutil
 import datetime
 import re
 from pathlib import Path
+from PIL import Image
 import yaml
 import frontmatter
 from markdown_it import MarkdownIt
@@ -51,12 +52,28 @@ def process_posts(env, config, global_context):
     if DIRS["site"].exists():
         shutil.rmtree(DIRS["site"])
     DIRS["site"].mkdir()
-
     (DIRS["site"] / ".nojekyll").touch()
-    print("Created .nojekyll file (Jekyll disabled)")
 
     valid_sections = [s["id"] for s in config.get("sections", [])]
     DEFAULT_CATEGORY = "blog"
+
+    md = MarkdownIt()
+    md.enable('table')
+    md.enable('strikethrough')
+
+    def render_image(self, tokens, idx, options, env):
+        token = tokens[idx]
+        
+        src = token.attrs.get('src', '')
+        alt = token.content
+        
+        if src.startswith('/media/') and any(src.lower().endswith(ext) for ext in ['.jpg', '.jpeg', '.png']):
+            src = str(Path(src).with_suffix('.webp'))
+            src = src.replace('\\', '/')
+
+        return f'<img src="{src}" alt="{alt}" loading="lazy">'
+
+    md.add_render_rule("image", render_image)
 
     for md_file in DIRS["posts"].glob("*.md"):
         post = frontmatter.load(md_file)
@@ -65,7 +82,6 @@ def process_posts(env, config, global_context):
         if not post_date:
             post_date = datetime.date.today()
         
-        md = MarkdownIt().enable('table').enable('strikethrough')
         html_content = md.render(post.content)
         
         custom_slug = post.get("slug")
@@ -95,7 +111,8 @@ def process_posts(env, config, global_context):
             "date": post_date,
             "location": post.get("location"),
             "content": html_content,
-            "is_post": True
+            "is_post": True,
+            "external_link": post.get("link") 
         })
 
         template_name = f"{post.get('template', 'post')}.html"
@@ -157,14 +174,35 @@ def copy_assets(config):
         print(f"CRITICAL WARNING: Theme file not found at {css_src}")
 
 def copy_media():
-    src = DIRS["media"]
-    dest = DIRS["site"] / "media"
-
-    if src.exists:
-        shutil.copytree(src, dest, dirs_exist_ok=True)
-        print(f"Media copied: {len(list(src.glob('*')))} files")
-    else:
+    src_dir = DIRS["media"]
+    dest_dir = DIRS["site"] / "media"
+    
+    if not src_dir.exists():
         print("No _media folder found, skipping.")
+        return
+
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    
+    count_converted = 0
+    count_copied = 0
+
+    for item in src_dir.iterdir():
+        if item.is_file():
+            if item.suffix.lower() in ['.jpg', '.jpeg', '.png']:
+                try:
+                    with Image.open(item) as img:
+                        new_filename = item.with_suffix('.webp').name
+                        dest_path = dest_dir / new_filename
+                        
+                        img.save(dest_path, format="WEBP", quality=85)
+                        count_converted += 1
+                except Exception as e:
+                    print(f"Error converting {item.name}: {e}")
+            else:
+                shutil.copy2(item, dest_dir / item.name)
+                count_copied += 1
+    
+    print(f"Media processed: {count_converted} converted to WebP, {count_copied} copied.")
 
 def main():
     print(f"Starting build in: {BASE_DIR}")

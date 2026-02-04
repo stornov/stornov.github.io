@@ -2,3 +2,4 @@ python-liquid
 python-frontmatter
 pyyaml
 markdown-it-py
+Pillow
