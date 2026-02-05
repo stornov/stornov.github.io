@@ -1,5 +1,6 @@
-{% include "header.html" %}
+{% extends "base.html" %}
 
+{% block content %}
 <div id="post">
     <h1>{{ title }}</h1>
     <div class="meta" style="color: #aaa; margin-bottom: 2em;">
@@ -9,5 +10,4 @@
     
     {{ content }}
 </div>
-
-{% include "footer.html" %}
+{% endblock %}

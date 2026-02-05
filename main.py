@@ -7,6 +7,7 @@ import yaml
 import frontmatter
 from markdown_it import MarkdownIt
 from liquid import Environment, FileSystemLoader
+from liquid.extra.tags import ExtendsTag, BlockTag
 
 BASE_DIR = Path.cwd()
 DIRS = {
@@ -27,7 +28,11 @@ def load_config():
         return yaml.safe_load(f)
 
 def setup_environment():
-    return Environment(loader=FileSystemLoader(search_path=str(DIRS["templates"])))
+    env = Environment(loader=FileSystemLoader(search_path=str(DIRS["templates"])))
+    # Регистрируем теги наследования, которых нет в стандартном Liquid
+    env.add_tag(ExtendsTag)
+    env.add_tag(BlockTag)
+    return env
 
 def slugify(text):
     text = str(text).lower().strip()

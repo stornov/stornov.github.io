@@ -2,18 +2,21 @@
 <html lang="{{ lang }}">
 <head>
     <meta charset="utf-8">
-    <title>{{ page_title }}</title>
+    <title>{% if page_title %}{{ page_title }}{% else %}{{ site_title }}{% endif %}</title>
     <meta name="author" content="{{ author }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ theme_file }}" type="text/css">
 </head>
 <body>
     <div class="site">
         <div class="title">
-            <a href="index.html">{{ site_title }}</a>
-            <!-- Включаем меню -->
+            <!-- Ссылка на главную берется из первого пункта меню для универсальности -->
+            <a href="{{ menu_items[0].url }}">{{ site_title }}</a>
+            
             {% include "menu.html" %}
         </div>
         
+        <!-- Сюда будет вставляться уникальный контент страниц -->
         {% block content %}{% endblock %}
 
         <div class="footer">
