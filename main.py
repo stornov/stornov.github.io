@@ -60,7 +60,7 @@ def process_posts(env, config, global_context):
     (DIRS["site"] / ".nojekyll").touch()
 
     valid_sections = [s["id"] for s in config.get("sections", [])]
-    DEFAULT_CATEGORY = "blog"
+    DEFAULT_SECTION = "blog"
 
     md = MarkdownIt()
     md.enable('table')
@@ -81,7 +81,7 @@ def process_posts(env, config, global_context):
     md.add_render_rule("image", render_image)
 
     for md_file in DIRS["posts"].glob("*.md"):
-        post = frontmatter.load(md_file)
+        post = frontmatter.load(md_file)  # type: ignore
         
         post_date = post.get("date")
         if not post_date:
@@ -103,11 +103,11 @@ def process_posts(env, config, global_context):
 
         output_filename = f"{filename_base}.html"
         
-        user_category = post.get("category", DEFAULT_CATEGORY)
-        if user_category in valid_sections:
-            final_category = user_category
+        user_section = post.get("section", DEFAULT_SECTION)
+        if user_section in valid_sections:
+            final_section = user_section
         else:
-            final_category = DEFAULT_CATEGORY
+            final_section = DEFAULT_SECTION
 
         post_context = global_context.copy()
         post_context.update({
@@ -132,7 +132,7 @@ def process_posts(env, config, global_context):
                 "title": post_title,
                 "date": post_date,
                 "url": output_filename,
-                "category": final_category,
+                "section": final_section,
                 "external_link": post.get("link")
             })
             
@@ -147,7 +147,7 @@ def build_index(env, config, global_context, posts):
     
     for section_cfg in config_sections:
         sec_id = section_cfg["id"]
-        filtered_posts = [p for p in posts if p["category"] == sec_id]
+        filtered_posts = [p for p in posts if p["section"] == sec_id]
         
         if filtered_posts:
             sections_data.append({

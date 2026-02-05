@@ -1,7 +1,7 @@
 ---
 title: "Back to FL Studio"
 date: 2026-02-03
-category: blog
+section: blog
 location: "Ozersk, Russia"
 ---
 

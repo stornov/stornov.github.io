@@ -1,7 +1,7 @@
 ---
 title: "Markdown Elements Test Page"
 date: 2026-01-26
-category: tech
+section: tech
 slug: test-elements
 published: false
 template: post

@@ -1,7 +1,7 @@
 ---
 title: "Welcome to my new site"
 date: 2026-01-24
-category: blog
+section: blog
 location: "Ozersk, Russia"
 ---
 
