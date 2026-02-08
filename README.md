@@ -8,7 +8,7 @@ Here I share my thoughts on programming, and life updates.
 
 This website is not built with Jekyll or Hugo. It runs on my own custom engine written in **Python**.
 
-👉 **[Check out the Generator Source Code (v1.4)](https://github.com/stornov/luna-ssg)**
+👉 **[Check out the Generator Source Code](https://github.com/stornov/luna-ssg)**
 
 ---
 © Arhip Storozhev.
