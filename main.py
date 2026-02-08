@@ -109,6 +109,13 @@ def process_posts(env, config, global_context):
         else:
             final_section = DEFAULT_SECTION
 
+        semantic_category = None
+        category_slug = None
+
+        if final_section == "blog":
+            semantic_category = post.get("category", "Random")
+            category_slug = slugify(semantic_category)
+
         post_context = global_context.copy()
         post_context.update({
             "page_title": post_title,
@@ -117,7 +124,10 @@ def process_posts(env, config, global_context):
             "location": post.get("location"),
             "content": html_content,
             "is_post": True,
-            "external_link": post.get("link") 
+            "external_link": post.get("link") ,
+            "section": final_section,
+            "category": semantic_category,
+            "category_slug": category_slug
         })
 
         template_name = f"{post.get('template', 'post')}.html"
@@ -133,7 +143,8 @@ def process_posts(env, config, global_context):
                 "date": post_date,
                 "url": output_filename,
                 "section": final_section,
-                "external_link": post.get("link")
+                "external_link": post.get("link"),
+                "category": semantic_category
             })
             
     posts_metadata.sort(key=lambda x: x['date'], reverse=True)
@@ -166,6 +177,44 @@ def build_index(env, config, global_context, posts):
     rendered = template.render(**index_context)
     (DIRS["site"] / "index.html").write_text(rendered, encoding="utf-8")
     print("Index generated.")
+
+def build_archive(env, config, global_context, posts):
+    blog_posts = [p for p in posts if p.get("section") == "blog"]
+
+    if not blog_posts:
+        return
+    
+    grouped_data = {}
+
+    for post in blog_posts:
+        cat = post.get("category") or "Random"
+
+        if cat not in grouped_data:
+            grouped_data[cat] = []
+        grouped_data[cat].append(post)
+
+    categories_list = []
+    for cat_name, cat_posts in grouped_data.items():
+        categories_list.append({
+            "title": cat_name,
+            "slug": slugify(cat_name),
+            "posts": cat_posts
+        })
+    
+    categories_list.sort(key=lambda x: x["title"])
+
+    template = env.get_template("archive.html")
+
+    archive_context = global_context.copy()
+    archive_context.update({
+        "title": "Archive",
+        "page_title": "Archive",
+        "categories": categories_list
+    })
+
+    rendered = template.render(**archive_context)
+    (DIRS["site"] / "archive.html").write_text(rendered, encoding="utf-8")
+    print("Archive generated.")
 
 def copy_assets(config):
     theme_name = config.get("theme")
@@ -217,6 +266,7 @@ def main():
     
     posts = process_posts(env, config, global_ctx)
     build_index(env, config, global_ctx, posts)
+    build_archive(env, config, global_ctx, posts)
     copy_assets(config)
     copy_media()
     print("Build complete! Ready for deployment.")

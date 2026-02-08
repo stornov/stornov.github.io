@@ -1,10 +1,9 @@
 ---
 title: "Markdown Elements Test Page"
 date: 2026-01-26
-section: tech
 slug: test-elements
 published: false
-template: post
+template: page
 ---
 
 Это тестовая страница, содержащая все поддерживаемые элементы Markdown. Она нужна для проверки корректности отображения стилей и работы парсера `markdown-it-py`.

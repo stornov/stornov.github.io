@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="home">
+    <h1>Blog Archive</h1>
+    <br>
+
+    {% for category in categories %}
+        <h2 id="{{ category.slug }}">{{ category.title }}</h2>
+        
+        <ul class="posts">
+            {% for post in category.posts %}
+                <li>
+                    <span>{{ post.date | date: "%d %b %Y" }}</span> &raquo; 
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+    {% endfor %}
+</div>
+{% endblock %}

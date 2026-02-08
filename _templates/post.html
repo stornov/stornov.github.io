@@ -6,6 +6,10 @@
     <div class="meta" style="color: #aaa; margin-bottom: 2em;">
         {% if location %}{{ location }} — {% endif %}
         {{ date | date: "%d %b %Y" }}
+        {% if section == "blog" %}
+            <br>
+            Posted in <a href="/archive.html#{{ category_slug }}">{{ category }}</a>
+        {% endif %}
     </div>
     
     {{ content }}
