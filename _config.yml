@@ -2,6 +2,7 @@ lang: en-us
 title: Arhip Storozhev
 author: Arhip Storozhev
 theme: mystyle.css
+baseurl: ""
 
 menu:
   - title: home

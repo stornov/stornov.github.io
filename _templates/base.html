@@ -5,12 +5,12 @@
     <title>{% if page_title %}{{ page_title }}{% else %}{{ site_title }}{% endif %}</title>
     <meta name="author" content="{{ author }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ theme_file }}" type="text/css">
+    <link rel="stylesheet" href="{{ baseurl }}/{{ theme_file }}" type="text/css">
 </head>
 <body>
     <div class="site">
         <div class="title">
-            <a href="{{ menu_items[0].url }}">{{ site_title }}</a>
+            <a href="{{ baseurl }}/">{{ site_title }}</a>
             
             {% include "menu.html" %}
         </div>

@@ -8,7 +8,7 @@
         {{ date | date: "%d %b %Y" }}
 
         {% if section == "blog" %}
-            &#124; Posted in <a href="/archive.html#{{ category_slug }}">{{ category }}</a>
+            &#124; Posted in <a href="{{ baseurl }}/archive.html#{{ category_slug }}">{{ category }}</a>
         {% endif %}
     </div>
     

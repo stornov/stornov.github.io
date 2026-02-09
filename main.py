@@ -41,6 +41,7 @@ def slugify(text):
 
 def get_global_context(config):
     return {
+        "baseurl": config.get("baseurl", ""),
         "lang": config.get("lang", "en"),
         "site_title": config.get("title"),
         "author": config.get("author"),
