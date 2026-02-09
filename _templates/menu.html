@@ -1,3 +1,7 @@
 {% for item in menu_items %}
-    <a class="extra" href="{{ baseurl }}{{ item.url }}">{{ item.title }}</a>
+    {% if item.url contains "://" or item.url contains "mailto:" %}
+        <a class="extra" href="{{ item.url }}">{{ item.title }}</a>
+    {% else %}
+        <a class="extra" href="{{ baseurl }}{{ item.url }}">{{ item.title }}</a>
+    {% endif %}
 {% endfor %}
