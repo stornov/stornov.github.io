@@ -72,8 +72,13 @@ def process_posts(env, config, global_context):
         src = token.attrs.get('src', '')
         alt = token.content
         
-        if src.startswith('/media/') and any(src.lower().endswith(ext) for ext in ['.jpg', '.jpeg', '.png']):
-            src = str(Path(src).with_suffix('.webp'))
+        if src.startswith('/media/'):
+            if any(src.lower().endswith(ext) for ext in ['.jpg', '.jpeg', '.png']):
+                src = str(Path(src).with_suffix('.webp'))
+
+            base = global_context.get("baseurl", "")
+            src = f"{base}{src}"
+
             src = src.replace('\\', '/')
 
         return f'<img src="{src}" alt="{alt}" loading="lazy">'
