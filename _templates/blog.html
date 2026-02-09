@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="home">
+    <div style="text-align: left; margin-bottom: 2em;">
+        <h1>{{ title }}</h1>
+
+        <p style="color: #666; margin-top: -0.5em; font-style: italic;">
+            All {{ posts_count }} posts I've written, in chronological order.
+        </p>
+    </div>
+
+    {% for group in years %}
+        <div class="year-section">
+            <h2 class="year-title">{{ group.year }}</h2>
+            
+            <div class="year-content">
+                {% for month in group.months %}
+                    <div class="month-row">
+                        <div class="month-name">
+                            {{ month.name }}
+                        </div>
+                        <div class="month-posts">
+                            {% for post in month.posts %}
+                                <div class="post-item">
+                                    <a href="{{ post.url }}">{{ post.title }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

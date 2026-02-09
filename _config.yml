@@ -6,10 +6,12 @@ theme: mystyle.css
 menu:
   - title: home
     url: /
+  - title: blog
+    url: /blog.html
 
 sections:
   - id: blog
-    title: "Blog Posts"
+    title: "Latest Posts"
   - id: events
     title: "Events, competitions, hackathons, etc."
 

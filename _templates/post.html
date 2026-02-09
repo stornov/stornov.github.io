@@ -3,12 +3,12 @@
 {% block content %}
 <div id="post">
     <h1>{{ title }}</h1>
-    <div class="meta" style="color: #aaa; margin-bottom: 2em;">
+    <div class="meta">
         {% if location %}{{ location }} — {% endif %}
         {{ date | date: "%d %b %Y" }}
+
         {% if section == "blog" %}
-            <br>
-            Posted in <a href="/archive.html#{{ category_slug }}">{{ category }}</a>
+            &#124; Posted in <a href="/archive.html#{{ category_slug }}">{{ category }}</a>
         {% endif %}
     </div>
     

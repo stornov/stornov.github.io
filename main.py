@@ -160,6 +160,8 @@ def build_index(env, config, global_context, posts):
         sec_id = section_cfg["id"]
         filtered_posts = [p for p in posts if p["section"] == sec_id]
         
+        filtered_posts = filtered_posts[:10]
+
         if filtered_posts:
             sections_data.append({
                 "title": section_cfg["title"],
@@ -180,6 +182,8 @@ def build_index(env, config, global_context, posts):
 
 def build_archive(env, config, global_context, posts):
     blog_posts = [p for p in posts if p.get("section") == "blog"]
+
+    count = len(blog_posts)
 
     if not blog_posts:
         return
@@ -205,16 +209,75 @@ def build_archive(env, config, global_context, posts):
 
     template = env.get_template("archive.html")
 
+    author = config.get("author", "")
+    browser_title = f"Archive | {author}"
+
     archive_context = global_context.copy()
     archive_context.update({
         "title": "Archive",
-        "page_title": "Archive",
-        "categories": categories_list
+        "page_title": browser_title,
+        "categories": categories_list,
+        "posts_count": count
     })
 
     rendered = template.render(**archive_context)
     (DIRS["site"] / "archive.html").write_text(rendered, encoding="utf-8")
     print("Archive generated.")
+
+def build_blog_list(env, config, global_context, posts):
+    blog_posts = [p for p in posts if p.get("section") == "blog"]
+    
+    count = len(blog_posts)
+
+    if not blog_posts:
+        return
+
+    grouped_data = {}
+
+    for post in blog_posts:
+        p_date = post["date"]
+        year = p_date.year
+        month_name = p_date.strftime("%b")
+
+        if year not in grouped_data:
+            grouped_data[year] = {}
+        
+        if month_name not in grouped_data[year]:
+            grouped_data[year][month_name] = []
+
+        grouped_data[year][month_name].append(post)
+
+    years_list = []
+
+    for year in sorted(grouped_data.keys(), reverse=True):
+        months_list = []
+        for month_name, m_posts in grouped_data[year].items():
+            months_list.append({
+                "name": month_name,
+                "posts": m_posts
+            })
+        
+        years_list.append({
+            "year": year,
+            "months": months_list
+        })
+    
+    template = env.get_template("blog.html")
+
+    author = config.get("author", "")
+    browser_title = f"Blog | {author}"
+
+    ctx = global_context.copy()
+    ctx.update({
+        "title": "Blog",
+        "page_title": browser_title,
+        "years": years_list,
+        "posts_count": count
+    })
+
+    rendered = template.render(**ctx)
+    (DIRS["site"] / "blog.html").write_text(rendered, encoding="utf-8")
+    print("Blog list page generated.")
 
 def copy_assets(config):
     theme_name = config.get("theme")
@@ -267,6 +330,7 @@ def main():
     posts = process_posts(env, config, global_ctx)
     build_index(env, config, global_ctx, posts)
     build_archive(env, config, global_ctx, posts)
+    build_blog_list(env, config, global_ctx, posts)
     copy_assets(config)
     copy_media()
     print("Build complete! Ready for deployment.")
