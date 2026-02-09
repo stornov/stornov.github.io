@@ -160,7 +160,8 @@ def build_index(env, config, global_context, posts):
         sec_id = section_cfg["id"]
         filtered_posts = [p for p in posts if p["section"] == sec_id]
         
-        filtered_posts = filtered_posts[:10]
+        if sec_id == "blog":
+            filtered_posts = filtered_posts[:10]
 
         if filtered_posts:
             sections_data.append({
