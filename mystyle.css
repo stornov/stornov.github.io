@@ -317,3 +317,60 @@ ul.posts span {
 .post-item a:hover {
     text-decoration: underline;
 }
+
+
+@media screen and (max-width: 768px) {
+    .site {
+        width: 92%;
+        margin-top: 2em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .site {
+        text-align: left;
+        line-height: 1.4em;
+    }
+
+    .title {
+        text-align: center;
+        line-height: 2.4;
+    }
+    .site .title a.extra {
+        display: inline-block;
+        padding: 0 5px;
+    }
+
+    #home h1, #post h1 { font-size: 1.5em; }
+    #home h2, .year-title { font-size: 1.25em; }
+
+    .month-name {
+        width: 3.5em;
+        font-size: 0.75em;
+    }
+
+    .contact-wrapper {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        width: 100%;
+        text-align: left;
+    }
+
+    .site .footer .contact {
+        display: block;
+        float: none;
+        box-sizing: border-box; 
+        width: 50% !important;
+        margin: 0 0 1.5em 0 !important;
+        padding-right: 15px;
+    }
+
+    .site .footer .contact p {
+        margin: 0;
+        font-size: 0.9em;
+    }
+
+    #post p:has(img) {
+        margin: 1.5em 0;
+    }
+}
