@@ -330,6 +330,8 @@ def copy_media():
 def main():
     print(f"Starting build in: {BASE_DIR}")
     config = load_config()
+    print(f"Build configuration - baseurl: '{config.get('baseurl', '')}'")
+    
     env = setup_environment()
     global_ctx = get_global_context(config)
     
