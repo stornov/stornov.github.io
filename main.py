@@ -194,7 +194,7 @@ def build_blog_list(env, config, global_context, posts):
     
     ys = [{"year": y, "months": [{"name": m, "posts": years[y][m]} for m in years[y]]} for y in sorted(years.keys(), reverse=True)]
     ctx = global_context.copy()
-    ctx.update({"title": "All Posts", "page_title": f"Blog | {config.get('author')}", "years": ys, "posts_count": len(blog_posts)})
+    ctx.update({"title": "Blog", "page_title": f"Blog | {config.get('author')}", "years": ys, "posts_count": len(blog_posts)})
     (DIRS["site"] / "blog.html").write_text(env.get_template("blog.html").render(**ctx), encoding="utf-8")
 
 def copy_assets_and_themes(config):
