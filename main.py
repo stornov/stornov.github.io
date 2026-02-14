@@ -128,14 +128,21 @@ def process_posts(env, config, global_context):
             "category_slug": category_slug, "external_link": post.get("link")
         })
 
-        section_dir = DIRS["site"] / curr_sec  # type: ignore
-        section_dir.mkdir(parents=True, exist_ok=True)
-        
         output_filename = f"{curr_slug}.html"
-        template = env.get_template(f"{post.get('template', 'post')}.html")
-        (section_dir / output_filename).write_text(template.render(**post_context), encoding="utf-8")
+
+        if post.get('template') == "page":
+            dest_dir = DIRS["site"]
+            relative_url = output_filename
+        else:
+            dest_dir = DIRS["site"] / curr_sec  # type: ignore
+            dest_dir.mkdir(parents=True, exist_ok=True)
+            relative_url = f"{curr_sec}/{output_filename}"
         
-        relative_url = f"{curr_sec}/{output_filename}"
+        dest_path = dest_dir / output_filename
+
+        template = env.get_template(f"{post.get('template', 'post')}.html")
+        dest_path.write_text(template.render(**post_context), encoding="utf-8")
+
         print(f"Generated: {relative_url}")
 
         if post.get("published", True):
