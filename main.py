@@ -16,14 +16,15 @@ DIRS = {
     "site": BASE_DIR / "_site",
     "themes": BASE_DIR / "_themes",
     "config": BASE_DIR / "_config.yml",
-    "media": BASE_DIR / "_media"
+    "assets": BASE_DIR / "_assets"
 }
+
+ASSET_REGISTRY = []
 
 def load_config():
     if not DIRS["config"].exists():
         print(f"Error: Config not found at {DIRS['config']}")
         exit(1)
-        
     with open(DIRS["config"], 'r', encoding='utf-8') as f:
         return yaml.safe_load(f)
 
@@ -62,94 +63,86 @@ def process_posts(env, config, global_context):
     valid_sections = [s["id"] for s in config.get("sections", [])]
     DEFAULT_SECTION = "blog"
 
+    curr_sec = ""
+    curr_slug = ""
+
     md = MarkdownIt()
     md.enable('table')
     md.enable('strikethrough')
 
     def render_image(self, tokens, idx, options, env):
         token = tokens[idx]
-        
         src = token.attrs.get('src', '')
         alt = token.content
         
-        if src.startswith('/media/'):
-            if any(src.lower().endswith(ext) for ext in ['.jpg', '.jpeg', '.png']):
-                src = str(Path(src).with_suffix('.webp'))
+        if src.startswith('/assets/') and 'favicon' not in src:
+            orig_path = Path(src)
+            ext = orig_path.suffix.lower()
+            
+            if ext in ['.jpg', '.jpeg', '.png']:
+                final_filename = f"{orig_path.stem}.webp"
+            else:
+                final_filename = orig_path.name
 
-            base = global_context.get("baseurl", "")
-            src = f"{base}{src}"
-
-            src = src.replace('\\', '/')
+            new_rel_path = f"assets/{curr_sec}/{curr_slug}/{final_filename}"
+            ASSET_REGISTRY.append({"src_name": orig_path.name, "dest_rel_path": new_rel_path})
+            src = f"{global_context['baseurl']}/{new_rel_path}"
 
         return f'<img src="{src}" alt="{alt}" loading="lazy">'
 
+    def render_link_open(self, tokens, idx, options, env):
+        token = tokens[idx]
+        href = token.attrs.get('href', '')
+        
+        if href.startswith('/assets/') and 'favicon' not in href:
+            orig_path = Path(href)
+            new_rel_path = f"assets/{curr_sec}/{curr_slug}/{orig_path.name}"
+            ASSET_REGISTRY.append({"src_name": orig_path.name, "dest_rel_path": new_rel_path})
+            token.attrs['href'] = f"{global_context['baseurl']}/{new_rel_path}"
+            
+        return self.renderToken(tokens, idx, options, env)
+
     md.add_render_rule("image", render_image)
+    md.add_render_rule("link_open", render_link_open)
 
     for md_file in DIRS["posts"].glob("*.md"):
         post = frontmatter.load(md_file)  # type: ignore
-        
-        post_date = post.get("date")
-        if not post_date:
-            post_date = datetime.date.today()
-        
-        html_content = md.render(post.content)
-        
-        custom_slug = post.get("slug")
-        post_title = post.get("title")
-
-        if custom_slug:
-            filename_base = custom_slug
-        elif post_title:
-            filename_base = slugify(post_title)
-            if not filename_base:
-                filename_base = md_file.stem
-        else:
-            filename_base = md_file.stem
-
-        output_filename = f"{filename_base}.html"
+        post_date = post.get("date") or datetime.date.today()
         
         user_section = post.get("section", DEFAULT_SECTION)
-        if user_section in valid_sections:
-            final_section = user_section
-        else:
-            final_section = DEFAULT_SECTION
+        curr_sec = user_section if user_section in valid_sections else DEFAULT_SECTION
+        
+        post_title = post.get("title", md_file.stem)
+        curr_slug = post.get("slug") or slugify(post_title) or md_file.stem
 
-        semantic_category = None
-        category_slug = None
+        html_content = md.render(post.content)
 
-        if final_section == "blog":
-            semantic_category = post.get("category", "Random")
-            category_slug = slugify(semantic_category)
+        semantic_category = post.get("category", "Random") if curr_sec == "blog" else None
+        category_slug = slugify(semantic_category) if semantic_category else None
 
         post_context = global_context.copy()
         post_context.update({
-            "page_title": post_title,
-            "title": post_title,
-            "date": post_date,
-            "location": post.get("location"),
-            "content": html_content,
-            "is_post": True,
-            "external_link": post.get("link") ,
-            "section": final_section,
-            "category": semantic_category,
-            "category_slug": category_slug
+            "page_title": post_title, "title": post_title, "date": post_date,
+            "location": post.get("location"), "content": html_content,
+            "is_post": True, "section": curr_sec, "category": semantic_category,
+            "category_slug": category_slug, "external_link": post.get("link")
         })
 
-        template_name = f"{post.get('template', 'post')}.html"
-        template = env.get_template(template_name)
-        rendered_html = template.render(**post_context)
+        section_dir = DIRS["site"] / curr_sec  # type: ignore
+        section_dir.mkdir(parents=True, exist_ok=True)
         
-        (DIRS["site"] / output_filename).write_text(rendered_html, encoding="utf-8")
-        print(f"Generated: {output_filename}")
+        output_filename = f"{curr_slug}.html"
+        template = env.get_template(f"{post.get('template', 'post')}.html")
+        (section_dir / output_filename).write_text(template.render(**post_context), encoding="utf-8")
+        
+        relative_url = f"{curr_sec}/{output_filename}"
+        print(f"Generated: {relative_url}")
 
         if post.get("published", True):
             posts_metadata.append({
-                "title": post_title,
-                "date": post_date,
-                "url": output_filename,
-                "section": final_section,
-                "external_link": post.get("link"),
-                "category": semantic_category
+                "title": post_title, "date": post_date, "url": relative_url,
+                "section": curr_sec, "category": semantic_category,
+                "external_link": post.get("link")
             })
             
     posts_metadata.sort(key=lambda x: x['date'], reverse=True)
@@ -157,191 +150,84 @@ def process_posts(env, config, global_context):
 
 def build_index(env, config, global_context, posts):
     template = env.get_template("index.html")
-    
     sections_data = []
-    config_sections = config.get("sections", [])
-    
-    for section_cfg in config_sections:
+    for section_cfg in config.get("sections", []):
         sec_id = section_cfg["id"]
-        filtered_posts = [p for p in posts if p["section"] == sec_id]
-        
-        if sec_id == "blog":
-            filtered_posts = filtered_posts[:10]
-
-        if filtered_posts:
-            sections_data.append({
-                "title": section_cfg["title"],
-                "posts": filtered_posts
-            })
+        filtered = [p for p in posts if p["section"] == sec_id]
+        if sec_id == "blog": filtered = filtered[:10]
+        if filtered: sections_data.append({"title": section_cfg["title"], "posts": filtered})
     
-    index_context = global_context.copy()
-    index_context.update({
-        "page_title": config.get("title"),
-        "sections": sections_data,
-        "bottom_sections": config.get("bottom_sections", []),
-        "is_home": True 
-    })
-    
-    rendered = template.render(**index_context)
-    (DIRS["site"] / "index.html").write_text(rendered, encoding="utf-8")
-    print("Index generated.")
+    ctx = global_context.copy()
+    ctx.update({"page_title": config.get("title"), "sections": sections_data, "bottom_sections": config.get("bottom_sections", []), "is_home": True})
+    (DIRS["site"] / "index.html").write_text(template.render(**ctx), encoding="utf-8")
 
 def build_archive(env, config, global_context, posts):
     blog_posts = [p for p in posts if p.get("section") == "blog"]
-
-    count = len(blog_posts)
-
-    if not blog_posts:
-        return
+    if not blog_posts: return
+    grouped = {}
+    for p in blog_posts:
+        cat = p.get("category") or "Random"
+        if cat not in grouped: grouped[cat] = []
+        grouped[cat].append(p)
     
-    grouped_data = {}
-
-    for post in blog_posts:
-        cat = post.get("category") or "Random"
-
-        if cat not in grouped_data:
-            grouped_data[cat] = []
-        grouped_data[cat].append(post)
-
-    categories_list = []
-    for cat_name, cat_posts in grouped_data.items():
-        categories_list.append({
-            "title": cat_name,
-            "slug": slugify(cat_name),
-            "posts": cat_posts
-        })
-    
-    categories_list.sort(key=lambda x: x["title"])
-
-    template = env.get_template("archive.html")
-
-    author = config.get("author", "")
-    browser_title = f"Archive | {author}"
-
-    archive_context = global_context.copy()
-    archive_context.update({
-        "title": "Archive",
-        "page_title": browser_title,
-        "categories": categories_list,
-        "posts_count": count
-    })
-
-    rendered = template.render(**archive_context)
-    (DIRS["site"] / "archive.html").write_text(rendered, encoding="utf-8")
-    print("Archive generated.")
+    cats = sorted([{"title": c, "slug": slugify(c), "posts": grouped[c]} for c in grouped], key=lambda x: x["title"])
+    ctx = global_context.copy()
+    ctx.update({"title": "Archive", "page_title": f"Archive | {config.get('author')}", "categories": cats, "posts_count": len(blog_posts)})
+    (DIRS["site"] / "archive.html").write_text(env.get_template("archive.html").render(**ctx), encoding="utf-8")
 
 def build_blog_list(env, config, global_context, posts):
     blog_posts = [p for p in posts if p.get("section") == "blog"]
+    if not blog_posts: return
+    years = {}
+    for p in blog_posts:
+        y, m = p["date"].year, p["date"].strftime("%b")
+        if y not in years: years[y] = {}
+        if m not in years[y]: years[y][m] = []
+        years[y][m].append(p)
     
-    count = len(blog_posts)
-
-    if not blog_posts:
-        return
-
-    grouped_data = {}
-
-    for post in blog_posts:
-        p_date = post["date"]
-        year = p_date.year
-        month_name = p_date.strftime("%b")
-
-        if year not in grouped_data:
-            grouped_data[year] = {}
-        
-        if month_name not in grouped_data[year]:
-            grouped_data[year][month_name] = []
-
-        grouped_data[year][month_name].append(post)
-
-    years_list = []
-
-    for year in sorted(grouped_data.keys(), reverse=True):
-        months_list = []
-        for month_name, m_posts in grouped_data[year].items():
-            months_list.append({
-                "name": month_name,
-                "posts": m_posts
-            })
-        
-        years_list.append({
-            "year": year,
-            "months": months_list
-        })
-    
-    template = env.get_template("blog.html")
-
-    author = config.get("author", "")
-    browser_title = f"Blog | {author}"
-
+    ys = [{"year": y, "months": [{"name": m, "posts": years[y][m]} for m in years[y]]} for y in sorted(years.keys(), reverse=True)]
     ctx = global_context.copy()
-    ctx.update({
-        "title": "Blog",
-        "page_title": browser_title,
-        "years": years_list,
-        "posts_count": count
-    })
+    ctx.update({"title": "All Posts", "page_title": f"Blog | {config.get('author')}", "years": ys, "posts_count": len(blog_posts)})
+    (DIRS["site"] / "blog.html").write_text(env.get_template("blog.html").render(**ctx), encoding="utf-8")
 
-    rendered = template.render(**ctx)
-    (DIRS["site"] / "blog.html").write_text(rendered, encoding="utf-8")
-    print("Blog list page generated.")
+def copy_assets_and_themes(config):
+    theme = config.get("theme")
+    if (DIRS["themes"] / theme).exists():
+        shutil.copy(DIRS["themes"] / theme, DIRS["site"] / theme)
 
-def copy_assets(config):
-    theme_name = config.get("theme")
-    css_src = DIRS["themes"] / theme_name
-    css_dest = DIRS["site"] / theme_name
-    
-    if css_src.exists():
-        shutil.copy(css_src, css_dest)
-        print(f"Theme copied: {theme_name}")
-    else:
-        print(f"CRITICAL WARNING: Theme file not found at {css_src}")
+    dest_assets = DIRS["site"] / "assets"
+    dest_assets.mkdir(parents=True, exist_ok=True)
+    if (DIRS["assets"] / "favicon.ico").exists():
+        shutil.copy(DIRS["assets"] / "favicon.ico", dest_assets / "favicon.ico")
 
-def copy_media():
-    src_dir = DIRS["media"]
-    dest_dir = DIRS["site"] / "media"
-    
-    if not src_dir.exists():
-        print("No _media folder found, skipping.")
-        return
-
-    dest_dir.mkdir(parents=True, exist_ok=True)
-    
-    count_converted = 0
-    count_copied = 0
-
-    for item in src_dir.iterdir():
-        if item.is_file():
-            if item.suffix.lower() in ['.jpg', '.jpeg', '.png']:
-                try:
-                    with Image.open(item) as img:
-                        new_filename = item.with_suffix('.webp').name
-                        dest_path = dest_dir / new_filename
-                        
-                        img.save(dest_path, format="WEBP", quality=85)
-                        count_converted += 1
-                except Exception as e:
-                    print(f"Error converting {item.name}: {e}")
-            else:
-                shutil.copy2(item, dest_dir / item.name)
-                count_copied += 1
-    
-    print(f"Media processed: {count_converted} converted to WebP, {count_copied} copied.")
+    for asset in ASSET_REGISTRY:
+        src_file = DIRS["assets"] / asset["src_name"]
+        if not src_file.exists(): continue
+        
+        dest_file = DIRS["site"] / asset["dest_rel_path"]
+        dest_file.parent.mkdir(parents=True, exist_ok=True)
+        
+        if src_file.suffix.lower() in ['.jpg', '.jpeg', '.png']:
+            try:
+                with Image.open(src_file) as img:
+                    img.save(dest_file, format="WEBP", quality=85)
+            except:
+                shutil.copy2(src_file, dest_file)
+        else:
+            shutil.copy2(src_file, dest_file)
+    print(f"Assets processed: {len(ASSET_REGISTRY)} files distributed.")
 
 def main():
-    print(f"Starting build in: {BASE_DIR}")
     config = load_config()
-    print(f"Build configuration - baseurl: '{config.get('baseurl', '')}'")
-    
+    print(f"Build started - baseurl: '{config.get('baseurl', '')}'")
     env = setup_environment()
-    global_ctx = get_global_context(config)
-    
-    posts = process_posts(env, config, global_ctx)
-    build_index(env, config, global_ctx, posts)
-    build_archive(env, config, global_ctx, posts)
-    build_blog_list(env, config, global_ctx, posts)
-    copy_assets(config)
-    copy_media()
-    print("Build complete! Ready for deployment.")
+    ctx = get_global_context(config)
+    posts = process_posts(env, config, ctx)
+    build_index(env, config, ctx, posts)
+    build_archive(env, config, ctx, posts)
+    build_blog_list(env, config, ctx, posts)
+    copy_assets_and_themes(config)
+    print("Build complete!")
 
 if __name__ == "__main__":
     main()
