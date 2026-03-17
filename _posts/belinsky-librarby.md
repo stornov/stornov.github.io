@@ -31,6 +31,12 @@ After taking a look at this flight of fancy, I realized I needed to mentally tos
 4. **Progress saving "under the hood".** Since we eliminated the backend with profiles, I wrote testing logic that saves quiz results directly to the browser's `localStorage`. Once a user passes a test, their score (e.g., 2/2) is neatly displayed on the course card and doesn't disappear.
 5. **Data-Driven Architecture (foolproof).** I knew that the content for rhis site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the `data.json` configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.
 
+## Try It Yourself
+
+Want to see what it's like to be a grandparent learning to use modern technology? Click the link and try out the platform for yourself: [**stornov.github.io/library-education-hub**](https://stornov.github.io/library-education-hub/)
+
+Try taking a test or finding a lecture - that's the best way to understand why I focused on large buttons and minimizing unnecessary clicks.
+
 ## Before & After: The UX Revolution
 
 To better understand the scope of the work, take a look at the difference between the initial design and the final result.
