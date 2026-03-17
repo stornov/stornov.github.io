@@ -5,23 +5,24 @@ theme: mystyle.css
 baseurl: ""
 
 menu:
-  - title: home
-    url: /
   - title: blog
     url: /blog.html
+  - title: archive
+    url: /archive.html
 
 sections:
   - id: blog
     title: "Latest Posts"
-  - id: events
-    title: "Events, competitions, hackathons, etc."
 
 bottom_sections:
-  - title: "Noteworthy Open Source Projects"
+  - title: "Projects"
     items:
       - title: Luna SSG
-        url: https://github.com/stornov/luna-ssg
+        url: https://github.com/luna-ssg/luna-ssg
         description: "Fast and simple static site generator with blog support (used for this site)"
+      - title: Belinsky Library Education Hub
+        url: null
+        description: "An inclusive SPA platform for adults aged 55 and older"
 
 footer:
   - title: Contacts
@@ -37,4 +38,4 @@ footer:
   - title: Powered by
     links:
       - text: Luna SSG
-        url: https://github.com/stornov/luna-ssg
+        url: https://github.com/luna-ssg/luna-ssg
