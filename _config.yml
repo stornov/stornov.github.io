@@ -21,7 +21,7 @@ bottom_sections:
         url: https://github.com/luna-ssg/luna-ssg
         description: "Fast and simple static site generator with blog support (used for this site)"
       - title: Belinsky Library Education Hub
-        url: null
+        url: https://github.com/stornov/library-education-hub
         description: "An inclusive SPA platform for adults aged 55 and older"
 
 footer:

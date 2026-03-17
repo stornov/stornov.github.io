@@ -18,6 +18,9 @@ The design and user flow, whick were solemnly handed over to me by another part 
 
 It was a classic example of designers drawing pretty little buttons in Figma, completely forgetting about the people who would actually be using them. Confusing logic, unnecassary steps, and - the cerry on top - a mandatory registration system and personal accounts for the 55+ audience. Nothing deters an older person from learning quite like the requirement to come up with a password and confirm an email address.
 
+![Funny photo](/assets/funny-photo.jpg)
+*My face when I first opened their UI/UX mockups in Figma*
+
 After taking a look at this flight of fancy, I realized I needed to mentally toss the brief in the trash and redesign the UX from scratch, using common sense.
 
 ## What was done (and how it should actually work)
@@ -28,13 +31,24 @@ After taking a look at this flight of fancy, I realized I needed to mentally tos
 4. **Progress saving "under the hood".** Since we eliminated the backend with profiles, I wrote testing logic that saves quiz results directly to the browser's `localStorage`. Once a user passes a test, their score (e.g., 2/2) is neatly displayed on the course card and doesn't disappear.
 5. **Data-Driven Architecture (foolproof).** I knew that the content for rhis site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the `data.json` configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.
 
+## Before & After: The UX Revolution
+
+To better understand the scope of the work, take a look at the difference between the initial design and the final result.
+
+![UX Comparison](/assets/belinsky-bad-good-ux-1.png)
+![UX Comparison](/assets/belinsky-bad-good-ux-2.png)
+![UX Comparison](/assets/belinsky-bad-good-ux-3.png)
+![UX Comparison](/assets/belinsky-bad-good-ux-4.png)
+![UX Comparison](/assets/belinsky-bad-good-ux-5.png)
+
+**What changed:**
+
+* **UX focus:** I removed "clutter" and barriers, transforming the confusing interface into a linear flow: enter - select - gain knowledge.
+
+* **Accessibility:** Instead of tiny buttons that are hard to hit, I created large, finger-friendly elements that are intuitive even for first-time smartphone users.
+
 ## Conclusion
 
 While some are enrolled in an AI course, too afraid to write a single line of code and designing unworkable interfaces, others put their minds to work, fix the mistakes of those so-called designers, and build sound, scalable architecture.
 
 The result is a fast, lightweight, and truly inclusive product for the library - one I'm not ashamed of. And I took my money with a clear conscience.
-
-*P.S. I'll post the images and a link to the repository for this site a little later; for now, you'll have to make do with plain text and a funny photo.*
-
-![Funny photo](/assets/funny-photo.jpg)
-*My face when I first opened their UI/UX mockups in Figma*
