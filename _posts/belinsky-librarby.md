@@ -14,9 +14,9 @@ You'd think the name of the course alone would literally scream: use neural netw
 
 ## "Masterpiece" UI/UX, or How Not to Design for Grandmas
 
-The design and user flow, whick were solemnly handed over to me by another part of the team, deserve a separate paragraph. I'll be honest: I wanted to cry.
+The design and user flow, which were solemnly handed over to me by another part of the team, deserve a separate paragraph. I'll be honest: I wanted to cry.
 
-It was a classic example of designers drawing pretty little buttons in Figma, completely forgetting about the people who would actually be using them. Confusing logic, unnecassary steps, and - the cerry on top - a mandatory registration system and personal accounts for the 55+ audience. Nothing deters an older person from learning quite like the requirement to come up with a password and confirm an email address.
+It was a classic example of designers drawing pretty little buttons in Figma, completely forgetting about the people who would actually be using them. Confusing logic, unnecassary steps, and - the carry on top - a mandatory registration system and personal accounts for the 55+ audience. Nothing deters an older person from learning quite like the requirement to come up with a password and confirm an email address.
 
 ![Funny photo](/assets/funny-photo.jpg)
 *My face when I first opened their UI/UX mockups in Figma*
