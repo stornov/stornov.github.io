@@ -29,7 +29,7 @@ After taking a look at this flight of fancy, I realized I needed to mentally tos
 2. **A "fail-safe" interface.** I redesigned the navigation: visually separated the menu from the content cards, cranked up the contrast, and created huge clickable areas. On smartphones, elements take up 100% of the screen width to prevent misclicks.
 3. **SPA built with pure JS.** No heavy frameworks or workarounds. Thi site opreates as a Single Page Application: screens switch instantly, without annoying page reloads.
 4. **Progress saving "under the hood".** Since we eliminated the backend with profiles, I wrote testing logic that saves quiz results directly to the browser's `localStorage`. Once a user passes a test, their score (e.g., 2/2) is neatly displayed on the course card and doesn't disappear.
-5. **Data-Driven Architecture (foolproof).** I knew that the content for rhis site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the `data.json` configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.
+5. **Data-Driven Architecture (foolproof).** I knew that the content for this site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the `data.json` configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.
 
 ## Try It Yourself
 
