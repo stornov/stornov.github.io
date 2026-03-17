@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Fixing a bad AI project</title>
+    <meta name="author" content="Arhip Storozhev">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/mystyle.css" type="text/css">
+</head>
+<body>
+    <div class="site">
+        <div class="title">
+            <a href="/">Arhip Storozhev</a>
+            
+            
+    
+        <a class="extra" href="/blog.html">blog</a>
+    
+
+    
+        <a class="extra" href="/archive.html">archive</a>
+    
+
+        </div>
+        
+        
+<div id="post">
+    <h1>Fixing a bad AI project</h1>
+    <div class="meta">
+        Ozersk, Russia — 
+        17 Mar 2026
+
+        
+            &#124; Posted in <a href="/archive.html#development">Development</a>
+        
+    </div>
+    
+    <p>I recently received a rather amusing request with a tight deadline. The task: to develop an educational web platform for computer courses at the V.G. Belinsky Library in Sverdlovsk. The target audience was older adults (55+).</p>
+<p>But the funniest thing about this project was its context. It was the final assignment for an entire group of students in the course... drumroll... <strong>&quot;Artificial Intelligence&quot;</strong>.</p>
+<p>You'd think the name of the course alone would literally scream: use neural networks, generate code, optimise processes! But no. It turned out to be easier for the group of 20 people to chip in and hire me than to try to figure it out themselves or even write a decent prompt for ChatGPT.</p>
+<h2>&quot;Masterpiece&quot; UI/UX, or How Not to Design for Grandmas</h2>
+<p>The design and user flow, whick were solemnly handed over to me by another part of the team, deserve a separate paragraph. I'll be honest: I wanted to cry.</p>
+<p>It was a classic example of designers drawing pretty little buttons in Figma, completely forgetting about the people who would actually be using them. Confusing logic, unnecassary steps, and - the cerry on top - a mandatory registration system and personal accounts for the 55+ audience. Nothing deters an older person from learning quite like the requirement to come up with a password and confirm an email address.</p>
+<p>After taking a look at this flight of fancy, I realized I needed to mentally toss the brief in the trash and redesign the UX from scratch, using common sense.</p>
+<h2>What was done (and how it should actually work)</h2>
+<ol>
+<li><strong>We scrapped registration and profiles.</strong> I made the platform completely open. Grandma clicks the link - Grandma watches the lecture right away. No barries.</li>
+<li><strong>A &quot;fail-safe&quot; interface.</strong> I redesigned the navigation: visually separated the menu from the content cards, cranked up the contrast, and created huge clickable areas. On smartphones, elements take up 100% of the screen width to prevent misclicks.</li>
+<li><strong>SPA built with pure JS.</strong> No heavy frameworks or workarounds. Thi site opreates as a Single Page Application: screens switch instantly, without annoying page reloads.</li>
+<li><strong>Progress saving &quot;under the hood&quot;.</strong> Since we eliminated the backend with profiles, I wrote testing logic that saves quiz results directly to the browser's <code>localStorage</code>. Once a user passes a test, their score (e.g., 2/2) is neatly displayed on the course card and doesn't disappear.</li>
+<li><strong>Data-Driven Architecture (foolproof).</strong> I knew that the content for rhis site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the <code>data.json</code> configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.</li>
+</ol>
+<h2>Conclusion</h2>
+<p>While some are enrolled in an AI course, too afraid to write a single line of code and designing unworkable interfaces, others put their minds to work, fix the mistakes of those so-called designers, and build sound, scalable architecture.</p>
+<p>The result is a fast, lightweight, and truly inclusive product for the library - one I'm not ashamed of. And I took my money with a clear conscience.</p>
+<p><em>P.S. I'll post the images and a link to the repository for this site a little later; for now, you'll have to make do with plain text and a funny photo.</em></p>
+<p><img src="/assets/blog/fixing-a-bad-ai-project/funny-photo.webp" alt="Funny photo" loading="lazy">
+<em>My face when I first opened their UI/UX mockups in Figma</em></p>
+
+</div>
+
+
+        <div class="footer">
+            <div class="contact-wrapper">
+    
+    <div class="contact">
+        <p>
+            <strong>Contacts</strong><br>
+            
+                
+                    Arhip Storozhev<br>
+                
+            
+                
+                    <a href="mailto:arsestordev@gmail.com">arsestordev@gmail.com</a><br>
+                
+            
+        </p>
+    </div>
+    
+    <div class="contact">
+        <p>
+            <strong>Socials</strong><br>
+            
+                
+                    <a href="https://github.com/stornov">GitHub</a><br>
+                
+            
+        </p>
+    </div>
+    
+    <div class="contact">
+        <p>
+            <strong>Powered by</strong><br>
+            
+                
+                    <a href="https://github.com/luna-ssg/luna-ssg">Luna SSG</a><br>
+                
+            
+        </p>
+    </div>
+    
+</div>
+<div style="clear: both;"></div>
+        </div>
+    </div>
+</body>
+</html>
