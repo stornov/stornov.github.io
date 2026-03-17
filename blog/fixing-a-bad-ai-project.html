@@ -42,6 +42,8 @@
 <h2>&quot;Masterpiece&quot; UI/UX, or How Not to Design for Grandmas</h2>
 <p>The design and user flow, whick were solemnly handed over to me by another part of the team, deserve a separate paragraph. I'll be honest: I wanted to cry.</p>
 <p>It was a classic example of designers drawing pretty little buttons in Figma, completely forgetting about the people who would actually be using them. Confusing logic, unnecassary steps, and - the cerry on top - a mandatory registration system and personal accounts for the 55+ audience. Nothing deters an older person from learning quite like the requirement to come up with a password and confirm an email address.</p>
+<p><img src="/assets/blog/fixing-a-bad-ai-project/funny-photo.webp" alt="Funny photo" loading="lazy">
+<em>My face when I first opened their UI/UX mockups in Figma</em></p>
 <p>After taking a look at this flight of fancy, I realized I needed to mentally toss the brief in the trash and redesign the UX from scratch, using common sense.</p>
 <h2>What was done (and how it should actually work)</h2>
 <ol>
@@ -51,12 +53,25 @@
 <li><strong>Progress saving &quot;under the hood&quot;.</strong> Since we eliminated the backend with profiles, I wrote testing logic that saves quiz results directly to the browser's <code>localStorage</code>. Once a user passes a test, their score (e.g., 2/2) is neatly displayed on the course card and doesn't disappear.</li>
 <li><strong>Data-Driven Architecture (foolproof).</strong> I knew that the content for rhis site would be added by the very people who couldn't write it themselves. To prevent them from messing with the HTML and breaking the layout, I moved the entire database of lectures, tests, and links into the <code>data.json</code> configuration file. Now the site works like a builder: you add text to JSON, and the script automatically generates a responsive page from it.</li>
 </ol>
+<h2>Before &amp; After: The UX Revolution</h2>
+<p>To better understand the scope of the work, take a look at the difference between the initial design and the final result.</p>
+<p><img src="/assets/blog/fixing-a-bad-ai-project/belinsky-bad-good-ux-1.webp" alt="UX Comparison" loading="lazy">
+<img src="/assets/blog/fixing-a-bad-ai-project/belinsky-bad-good-ux-2.webp" alt="UX Comparison" loading="lazy">
+<img src="/assets/blog/fixing-a-bad-ai-project/belinsky-bad-good-ux-3.webp" alt="UX Comparison" loading="lazy">
+<img src="/assets/blog/fixing-a-bad-ai-project/belinsky-bad-good-ux-4.webp" alt="UX Comparison" loading="lazy">
+<img src="/assets/blog/fixing-a-bad-ai-project/belinsky-bad-good-ux-5.webp" alt="UX Comparison" loading="lazy"></p>
+<p><strong>What changed:</strong></p>
+<ul>
+<li>
+<p><strong>UX focus:</strong> I removed &quot;clutter&quot; and barriers, transforming the confusing interface into a linear flow: enter - select - gain knowledge.</p>
+</li>
+<li>
+<p><strong>Accessibility:</strong> Instead of tiny buttons that are hard to hit, I created large, finger-friendly elements that are intuitive even for first-time smartphone users.</p>
+</li>
+</ul>
 <h2>Conclusion</h2>
 <p>While some are enrolled in an AI course, too afraid to write a single line of code and designing unworkable interfaces, others put their minds to work, fix the mistakes of those so-called designers, and build sound, scalable architecture.</p>
 <p>The result is a fast, lightweight, and truly inclusive product for the library - one I'm not ashamed of. And I took my money with a clear conscience.</p>
-<p><em>P.S. I'll post the images and a link to the repository for this site a little later; for now, you'll have to make do with plain text and a funny photo.</em></p>
-<p><img src="/assets/blog/fixing-a-bad-ai-project/funny-photo.webp" alt="Funny photo" loading="lazy">
-<em>My face when I first opened their UI/UX mockups in Figma</em></p>
 
 </div>
 
