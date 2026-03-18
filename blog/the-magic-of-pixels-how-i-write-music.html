@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>The Magic of Pixels: How I Write Music</title>
+    <meta name="author" content="Arhip Storozhev">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="stylesheet" href="/mystyle.css" type="text/css">
+</head>
+<body>
+    <div class="site">
+        <div class="title">
+            <a href="/">Arhip Storozhev</a>
+            
+            
+    
+        <a class="extra" href="/blog.html">blog</a>
+    
+
+    
+        <a class="extra" href="/archive.html">archive</a>
+    
+
+        </div>
+        
+        
+<div id="post">
+    <h1>The Magic of Pixels: How I Write Music</h1>
+    <div class="meta">
+        Ozersk, Russia — 
+        18 Mar 2026
+
+        
+            &#124; Posted in <a href="/archive.html#music">Music</a>
+        
+    </div>
+    
+    <p>You know that strange feeling when a simple 16-bit tune from <em>Undertale</em> or <em>Deltarune</em> starts playing, and for some reason it takes you breath away? Or when a boss theme kicks in, and without even realizing it, you start nodding your head to the beat?</p>
+<p>I've always listened to indie game soundtracks with a sense of awe. I really wanted to learn to play the piano, but somehow I've never once in my life sat down at a real instrument. My attempt to learn the drums also ended with me hopelessly losing the rhythm by the second bar - my hands and feet simply refused to work as a single unit.</p>
+<p>But then I discovered FL Studio. And I realized something amazing: to write music that strikes right at the heart, you don't need to be a virtuoso performer. You need a sequencer, imagination, and an understanding of <em>why</em> sounds evoke emotions.</p>
+<p>I write music for myself, I'm still learning, and I'm constantly tinkering with the settings, trying to find &quot;that&quot; sound. In this post, I've compiled my personal journal of sisocveires - techniques, life hacks, and principles from Toby Fox that helped me turn a set of digital notes into a living story. I hope this will be interesting for both beginners and experienced users.</p>
+<hr />
+<h2>1. Palette: Choosing Soul Over Realism</h2>
+<p>My first mistake was trying to make the sound &quot;expensive&quot;. I used massive VST libraries that took up tens of gigabytes. The music sounded high-quality, but... faceless.</p>
+<p>The magic of indie games lies in <strong>Soundfonts (.sf2)</strong> - old sound banks from the '90s and 2000s. Yes, they cost next to nothing and sound a bit gritty, but they have character. My working arsenal, from which almost everything is assembled, looks like this:</p>
+<ul>
+<li>
+<p><strong>SGM-V2.01:</strong> The foundation. From here I take a clean piano (Bright Yamaha), an acoustic bass, an oboe for sad scenes, and those very orchestral hits (Orchestra Hits).</p>
+</li>
+<li>
+<p><strong>Mega Man X:</strong> If I need a bass that doesn't just hum, but aggressively rattles and rocks (Synth Bass).</p>
+</li>
+<li>
+<p><strong>EarthBound / KirbysDreamLand3:</strong> Priceless for weird synths, overdriven buitars, clean 8-bits squares (Square Wave), and &quot;whistling&quot; leads.</p>
+</li>
+<li>
+<p><strong>Chrono Trigger (CTinstruments) / Illusion of Gaia:</strong> If you need ancient magic - I grab the pads (Strings) and harp from here. They have a phenomenal warm, &quot;tape-like&quot; hum.</p>
+</li>
+<li>
+<p><strong>THDrum / THInst (Touhou):</strong> Dry, snappy drums and aggressive trumpets (ZUNpets) for boss fights.</p>
+</li>
+<li>
+<p><strong>Super Mario World / Yoshi's Island / Ultimate Guitar Kit 2:</strong> For atmospheric percussion and solo guitars.</p>
+</li>
+</ul>
+<p><img src="/assets/blog/the-magic-of-pixels-how-i-write-music/about-my-music-1.webp" alt="Screenshot 1: Channel Rack in FL Studio wth loaded Soundfont Players, colored in dirrerent hues" loading="lazy"></p>
+<hr />
+<h2>2. Piano: The Cassette Effect and the Dialogue Between Both Hands</h2>
+<p>Since I can't play the piano live, the Piano Roll has become my keyboard. And here I've discovered a few key secrets.</p>
+<h3><em>Secret #1: The &quot;Old Cassette&quot; Secret (Detune &amp; Layering)</em></h3>
+<p>Sometimes I want to achieve that very &quot;worn-out&quot; sound, as if we're hearing a piano from an old game that's been sitting in an abandoned hall of many years.</p>
+<p><strong>When I use layering:</strong>
+I clone the piano channel. On the second layer, I turn the <em>Fine Tune</em> knob in the settings (MISC) to <strong>+12 or +15 cents</strong>. If I add an equalizer with a low-pass filter to this layer, it starts to sound &quot;muted&quot; and &quot;warm&quot;. When the clean and detuned layers play together, a slight &quot;beating&quot; (chorus) effect occurs.</p>
+<h3><em>Secret #2: The Art of Polyphony (A Dialogue Between Two Hands)</em></h3>
+<p>For a long time, I made a mistake: my left hand simply &quot;supported&quot; the right, repeating the rhythm of the chords. As a result, everything sounded flat. Listen to <em>Death by Glamour</em> or <em>Spider Dance</em> - there, both hands are busy.</p>
+<p><strong>The secret of the &quot;conversation&quot;:</strong>
+I stopped thinking of the piano as a single instrument. Now I imagine it as <strong>two different musicians</strong>.</p>
+<ul>
+<li>
+<p><strong>Right Hand (Soloist):</strong> Leads the melody, jumps across octaves, uses grace notes and syncopation.</p>
+</li>
+<li>
+<p><strong>Left Hand (Rhythm Section):</strong> It doesn't just play chords; it &quot;dances&quot; along with the main melody. It fills in the soloist's pauses. When the right hand plays a long note, the left hand starts playing a fast, bouncy bass line. When the right hand starts &quot;running&quot;, the left hand pauses on heavy, accented beats.</p>
+</li>
+</ul>
+<p><strong>How I Achieve This (The &quot;Interlocking&quot; Technique):</strong></p>
+<ol>
+<li><strong>Interval:</strong> I try to make the right and left hands move in opposite directions. If the right hand's melody goes up, the left hand (the bass line) goes down. This expands the sonic pallete and makes the track sound &quot;mature&quot;.</li>
+<li><strong>The Discipline of Silence:</strong> I've stopped being afraid to include pauses in the accompaniment. In <em>Death by Glamour</em>, the piano constantly makes &quot;staccato stabs&quot;. I program the left hand so that it plays only in those micro-moments when the right hand isn't busy with a complex passage. This creates &quot;intervals of clarity&quot;.</li>
+<li><strong>Humanization (Breathing):</strong> To make the dialogue between the hands sound natural, I apply <strong>Strum (<code>Alt</code>+<code>S</code>)</strong> to the left-hand chords, but with a very low value. This creates the illusion that the pianist physically cannot strike all the keys at once, and it adds that very &quot;vintage&quot; quality that is missing in &quot;sterile&quot; tracks.</li>
+</ol>
+<p><img src="/assets/blog/the-magic-of-pixels-how-i-write-music/about-my-music-2.webp" alt="Screenshot 2: Piano Roll, showing that the right-hand notes (melody) and left-hand notes (rhythm) almost never play simultaneously on the downbeats in dence passages" loading="lazy"></p>
+<hr />
+<h2>3. Rhythm: How to Make Music Groove</h2>
+<p>As someone who couldn't keep a beat on a real drum kit, I found my zen in FL Studio. To make a track groove, you need to follow a couple of rules:</p>
+<ul>
+<li><strong>No Long Notes:</strong> The bass in battle tracks shouldn't drone. I make the notes extremely short (staccato) and turn off the <em>Release</em> parameter. The bass should snap: <em>&quot;Boom! Band!&quot;</em></li>
+<li><strong>Octave jumps (Slap effect):</strong> To make a 16-bit bass sound like a cool bassist, I insert short notes an octave higher on the off-beat. This &quot;click&quot; instantly gives the track a funky bounce.</li>
+<li><strong>Ghost Notes:</strong> Between the main, loud hits, I add micro-notes with very low volume (Velocity 30-40). You can barely hear them, but they create an aggressive &quot;rustle&quot;.</li>
+<li><strong>The Magic of Swing:</strong> In battle themes, I turn the global <em>Swing</em> up by 20-30%. The even 16th notes start to lag slightly , and the rhythm begins to brazenly &quot;limp&quot;.</li>
+</ul>
+<p><img src="/assets/blog/the-magic-of-pixels-how-i-write-music/about-my-music-3.webp" alt="Screenshot 3: Bass part with bright red notes, octave jumps, and pale "ghost" notes in between" loading="lazy"></p>
+<hr />
+<h2>4. Harmony: How to Ligitimately Break Hearts</h2>
+<p>You can whistle Toby Fox's melodies with just one finger, but they bring tears to your eyes because of <em>how</em> they interact with the harmony.</p>
+<ul>
+<li><strong>The &quot;Breathless&quot; Rule (Syncopation):</strong> I almost never start main melodies exactly on the 'one' beat. I take a micro-pause and come in on the &quot;and&quot;. It counds like a character has taken an uncertain breath.</li>
+<li><strong>Octave Doubling:</strong> At the climax, I always duplicate the melody an octave higher. This instantly makes the sound huge and &quot;concert-like&quot;.</li>
+<li><strong>Minor SUbdominant (Toby Chord):</strong> Let's say we're playing a warm theme in C major. And suddenly, at the very end of the phrase, I insect an F minor chord (<strong>Fm</strong>). This foreign note in the middle of the major chord takes your breath away.</li>
+<li><strong>Diminished Chords and Tritones:</strong> In boss fights, I use &quot;wrong&quot; notes. The blues tritone grates on the ear and gives the track a defiant edge. And I use diminished chords right before the drop - they sound like mounting panic or a system crash.</li>
+</ul>
+<hr />
+<h2>5. Conposition Architecture: Thinking in Phases</h2>
+<p>The most common mistake is to write a cool 4-bar loop and copy it for 3 minutes. A boss fight is all about drama. Here's my favorite structure:</p>
+<ol>
+<li><strong>Intro (Vacuum):</strong> A muffled filter (Low Pass), a strange rhythm. Tension hangsin the air.</li>
+<li><strong>Drop:</strong> An explosion. A heavy bass and the main melody kick in.</li>
+<li><strong>Stalking:</strong> The guitars and kick drum fade out. Only the edge violins and pulsating bass remain.</li>
+<li><strong>Breakdown (The Pit / Sorrow):</strong> A brilliant trick. The track's tempo doesn't change, but the drums start playing in <strong>half-time</strong> (the snare drum hits half as often). The harmony shifts to minor, and the choir enters. The music suddenly becomes massive and tragic.</li>
+<li><strong>Total Climax:</strong> We returnto the original tempo, the melody soars into the octaves, and there's a hard stereo pan.</li>
+<li><strong>Finale:</strong> Here are three ways I handle endings:
+<ol>
+<li><strong>Natural Fade-out:</strong> Instead of abruptly cutting off all tracks, I program an 8-bar fade-out</li>
+<li><strong>Echo in silence:</strong> In the last bar, everything falls silent, leaving only a single high note (from a bell, for example) that lingers in the air for 5-6 seconds</li>
+<li><strong>System crash:</strong> In the last bar, I set the Master Pitch automation to drop sharply by -1 semitone; it sounds like someone yanked the plug out of an old tape recorder</li>
+</ol>
+</li>
+</ol>
+<p><img src="/assets/blog/the-magic-of-pixels-how-i-write-music/about-my-music-4.webp" alt="Screenshot 4: Wide view of the Playlist, where the track is divided into segments: Intro, Drop, B-section, Climax" loading="lazy"></p>
+<hr />
+<h2>6. Mixing for Hooligans (The Mixing Magic)</h2>
+<p>Indie music should bite. A mix that's too clean kills the character.</p>
+<ul>
+<li><strong>Distortion on the violins:</strong> If I need an aggressive lead, I take classic violins (Detache), slap some guitar overdrive (<em>Fruity Blood Overdrive</em>) on them, and cut the lows. The violin screeches like a chainsaw.</li>
+<li><strong>Digital Pollen (Ping-Pong Delay):</strong> To fill the space with magic, I take a music box (Celesta), write fast arpeggios in the 6th octave, and run <em>Fruity Delay 3</em> in Ping-Pong mode. The sound jumps from my left ear to my right, like a swarm of fireflies.</li>
+<li><strong>Sidechain:</strong> In the final climaxes, when 10 instruments are playing, I heavily sidechain the bass and drum pads (through the Fruity Limiter). The entire mix begins to &quot;sway&quot; rhythmically to the drum beats, making room for the rhythm.</li>
+<li><strong>Floating Tape:</strong> I send the <em>Fruity Pitch Shifter</em> to the Master channel and draw an automation curve that slowly shifts the pitch of the entire track up and down by 3–5 cents.</li>
+<li><strong>Seamless Looping:</strong> When exporting a track for games, I always select the <strong>&quot;Wrap Remainder&quot;</strong> mode in FL Studio. The reverb tail from the end of the track is neatly carried over to the beginning of the file, and the music plays endlessly in the game without any clicks.</li>
+</ul>
+<hr />
+<h2>Instead of a conclusion</h2>
+<p>Bringing melodies from your head into the real world is a complex process, especially when your fingers aren't used to flying across the keys. But digital instruments give us incredible freedom.</p>
+<p>Retro-RPG music is a triumph of emotion over technology. It's the ability to take a cheap synthesizer from the '90s, add a little &quot;grit&quot;, make the bass bounce rhythmically, and let the melody speak to the listener.</p>
+<p>Don't be afraid of silence. Don't be afraid of &quot;wrong&quot; dissonant notes. And when you hit Play and get goosebumps - that means your've found your magic.</p>
+<p><em>Someday I'll add a player with my tracks here.</em></p>
+
+</div>
+
+
+        <div class="footer">
+            <div class="contact-wrapper">
+    
+    <div class="contact">
+        <p>
+            <strong>Contacts</strong><br>
+            
+                
+                    Arhip Storozhev<br>
+                
+            
+                
+                    <a href="mailto:arsestordev@gmail.com">arsestordev@gmail.com</a><br>
+                
+            
+        </p>
+    </div>
+    
+    <div class="contact">
+        <p>
+            <strong>Socials</strong><br>
+            
+                
+                    <a href="https://github.com/stornov">GitHub</a><br>
+                
+            
+        </p>
+    </div>
+    
+    <div class="contact">
+        <p>
+            <strong>Powered by</strong><br>
+            
+                
+                    <a href="https://github.com/luna-ssg/luna-ssg">Luna SSG</a><br>
+                
+            
+        </p>
+    </div>
+    
+</div>
+<div style="clear: both;"></div>
+        </div>
+    </div>
+</body>
+</html>
