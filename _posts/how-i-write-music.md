@@ -12,7 +12,7 @@ I've always listened to indie game soundtracks with a sense of awe. I really wan
 
 But then I discovered FL Studio. And I realized something amazing: to write music that strikes right at the heart, you don't need to be a virtuoso performer. You need a sequencer, imagination, and an understanding of *why* sounds evoke emotions.
 
-I write music for myself, I'm still learning, and I'm constantly tinkering with the settings, trying to find "that" sound. In this post, I've compiled my personal journal of sisocveires - techniques, life hacks, and principles from Toby Fox that helped me turn a set of digital notes into a living story. I hope this will be interesting for both beginners and experienced users.
+I write music for myself, I'm still learning, and I'm constantly tinkering with the settings, trying to find "that" sound. In this post, I've compiled my personal journal of discoveries - techniques, life hacks, and principles from Toby Fox that helped me turn a set of digital notes into a living story. I hope this will be interesting for both beginners and experienced users.
 
 ---
 
