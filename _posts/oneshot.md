@@ -78,7 +78,7 @@ This helplessness simply tore at my heart. As "Gods," there was nothing we could
 
 ## ❤️ A True Farewell
 
-Despite all the pain, this difficult journey led us to a happy ending. Before leaving this world forever, we were able to reunite with all our friends and say goodbye to them. At that moment, I finally broke down in tears.
+Despite all the pain, this difficult journey led us to a happy ending. Before leaving this world forever, we were able to reunite with all our friends and say goodbye to them.
 
 Niko really did come home.
 
