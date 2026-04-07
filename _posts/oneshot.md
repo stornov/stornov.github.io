@@ -5,6 +5,7 @@ section: blog
 location: "Ozersk, Russia"
 category: Gaming
 slug: oneshot
+published: false
 ---
 
 ![Messiah/Niko](/assets/messiah_wp.png)
